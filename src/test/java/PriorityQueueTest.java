@@ -39,10 +39,6 @@ class PriorityQueueTest {
     {
         Exception e = assertThrows(NullPointerException.class,()->{new PriorityQueue<Integer>().add(null);});
     }
-    @Test
-    public void except_error()
-    {
-        Exception e = assertThrows(IllegalArgumentException.class,()->{new PriorityQueue<Integer>().add(null);});
-    }
+    
 
 }
