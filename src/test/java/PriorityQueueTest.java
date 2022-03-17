@@ -3,6 +3,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.NoSuchElementException;
 import java.util.PriorityQueue;
 import java.util.stream.Stream;
 
@@ -12,7 +13,10 @@ class PriorityQueueTest {
     static Stream<Arguments> stream(){
         return Stream.of(
                 Arguments.of(new int[]{7, 3, 1}, new int[]{1, 3, 7}),
-                Arguments.of(new int[]{7, 3, -1}, new int[]{-1, 3, 7}));
+                Arguments.of(new int[]{7, 3, -1}, new int[]{-1, 3, 7}),
+                Arguments.of(new int[]{7, -3, 1}, new int[]{-3, 1, 7}),
+                Arguments.of(new int[]{-7, 3, 1}, new int[]{-7, 1, 3}),
+                Arguments.of(new int[]{77, 3, 1}, new int[]{1, 3, 77}));
     }
     @ParameterizedTest(name = "#{index} - Test with Argument = {0}, {1}")
     @MethodSource("stream")
@@ -39,6 +43,16 @@ class PriorityQueueTest {
     {
         Exception e = assertThrows(NullPointerException.class,()->{new PriorityQueue<Integer>().add(null);});
     }
-    
+
+    @Test
+    public void except_remove()
+    {
+        Exception e = assertThrows(NoSuchElementException.class,()->{new PriorityQueue<Integer>().remove();});
+    }
+    @Test
+    public void except_ileArg()
+    {
+        Exception e = assertThrows(NoSuchElementException.class, ()->{new PriorityQueue<Integer>(0).add(0);});
+    }
 
 }
