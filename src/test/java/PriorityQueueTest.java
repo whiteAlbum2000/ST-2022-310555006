@@ -52,7 +52,7 @@ class PriorityQueueTest {
     @Test
     public void except_ileArg()
     {
-        Exception e = assertThrows(NoSuchElementException.class, ()->{new PriorityQueue<Integer>(0).add(0);});
+        Exception e = assertThrows(IllegalArgumentException.class, ()->{new PriorityQueue<Integer>(0).add(0);});
     }
 
 }
